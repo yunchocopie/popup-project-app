@@ -1,8 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-/// Flutter code sample for [CupertinoSearchTextField].
-
 void main() => runApp(const SearchTextFieldApp());
 
 class SearchTextFieldApp extends StatelessWidget {
@@ -38,53 +36,53 @@ class _SearchTextFieldExampleState extends State<SearchTextFieldExample> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(text),
-                SearchTextField(
-                  fieldValue: (String value) {
-                    setState(() {
-                      text = value;
-                    });
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 0.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: CupertinoSearchTextField(
+                          padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                          onChanged: (String value) {
+                            print('The text has changed to: $value');
+                            setState(() {
+                              text = value;
+                            });
+                          },
+                          onSubmitted: (String value) {
+                            print('Submitted text: $value');
+                          },
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Container(
+                        width: 30,
+                        child: IconButton(
+                          icon: Icon(CupertinoIcons.bell, size: 23, color: Colors.black),  // 크기 증가
+                          onPressed: () {
+                            // TODO: 알림 아이콘 클릭 이벤트 처리
+                          },
+                        ),
+                      ),
+                      SizedBox(width: 5),
+                      Container(
+                        width: 30,
+                        child: IconButton(
+                          icon: Icon(CupertinoIcons.person, size: 23, color: Colors.black),  // 크기 증가
+                          onPressed: () {
+                            // TODO: 사람 아이콘 클릭 이벤트 처리
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
           ),
-          Positioned(
-              right: 0,
-              top: 15,
-              bottom: 0,
-              child: IconButton(
-                icon: Icon(Icons.keyboard_arrow_down),
-                color: Colors.grey,
-                onPressed: () {
-                  // TODO: 나의 위치
-                },
-              )
-          )
         ],
-
-
       ),
-    );
-  }
-}
-
-class SearchTextField extends StatelessWidget {
-  const SearchTextField({
-    super.key,
-    required this.fieldValue,
-  });
-
-  final ValueChanged<String> fieldValue;
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoSearchTextField(
-      onChanged: (String value) {
-        print('The text has changed to: $value');
-      },
-      onSubmitted: (String value) {
-        print('Submitted text: $value');
-      },
     );
   }
 }
