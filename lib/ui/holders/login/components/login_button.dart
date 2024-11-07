@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:team_project/ui/holders/home/home_page.dart';
 
+import '../../main_holder.dart';
+
 class LoginButton extends StatelessWidget {
   const LoginButton({
     super.key,
@@ -21,14 +23,15 @@ class LoginButton extends StatelessWidget {
         splashColor: Colors.black,
         borderRadius: BorderRadius.circular(10.0),
         onTap: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(builder: (context) => HomePage()),
-          );
+
           print('로그인 클릭됨');
 
           if (_formKey.currentState!.validate()) {
             // Navigator.pushNamed(context, "/home");
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => MainHolder()),
+            );
           }
         },
         child: Center(
