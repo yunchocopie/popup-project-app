@@ -2,13 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NearbyMe extends StatelessWidget {
-  final String cafeName;
+  final String popupName;
   final int distance;
   final IconData iconData;
   final String imageUrl;
 
   const NearbyMe({
-    required this.cafeName,
+    required this.popupName,
     required this.distance,
     required this.iconData,
     required this.imageUrl,
@@ -47,7 +47,7 @@ class NearbyMe extends StatelessWidget {
                         SizedBox(height: 35,),
                         Text.rich(TextSpan(children: [
                           TextSpan(
-                            text: cafeName,
+                            text: popupName,
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.w600),
                           ),

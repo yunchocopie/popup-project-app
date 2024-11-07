@@ -1,14 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:team_project/ui/holders/home/popup_detail/popup_detail_page.dart';
 
 class ScheduldedPopupFrame extends StatelessWidget {
-  final String cafeName;
+  final String popupName;
   final int distance;
   final IconData iconData;
   final String imageUrl;
 
   const ScheduldedPopupFrame({
-    required this.cafeName,
+    required this.popupName,
     required this.distance,
     required this.iconData,
     required this.imageUrl,
@@ -43,7 +44,10 @@ class ScheduldedPopupFrame extends StatelessWidget {
         ),
       ),
       onTap: () {
-        // TODO: 매장 연결
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PopupDetailPage()),
+        );
       },
     );
   }
