@@ -15,6 +15,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        scrolledUnderElevation: 0,
+        elevation: 0,
         backgroundColor: Colors.white,
         title: SearchTextFieldApp(),
       ),
