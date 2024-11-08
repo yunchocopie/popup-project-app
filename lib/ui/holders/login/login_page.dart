@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'components/login_body.dart';
 
 class LoginPage extends StatelessWidget {
@@ -13,18 +12,21 @@ class LoginPage extends StatelessWidget {
         backgroundColor: Colors.white,
         scrolledUnderElevation: 0,
         title: Text(
-            '로그인',
+          '로그인',
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 16
+            fontSize: 16,
           ),
         ),
         centerTitle: true,
         elevation: 0,
-
       ),
-      //appBar: CustomBackAppBar(title: ''),
-      body: LoginBody(),
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: LoginBody(),
+        ),
+      ),
+      resizeToAvoidBottomInset: true, // 키보드가 나타나면 화면이 자동으로 조정
     );
   }
 }
