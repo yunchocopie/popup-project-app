@@ -18,7 +18,7 @@ class _PopupDetailPageState extends State<PopupDetailPage> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     return DefaultTabController(
-      length: 4, // TabBar에 표시할 탭 수
+      length: 5, // TabBar에 표시할 탭 수
       child: Scaffold(
         backgroundColor: Colors.white,
           body: Stack(

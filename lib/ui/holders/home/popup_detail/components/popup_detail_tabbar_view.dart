@@ -124,13 +124,16 @@ class PopupDetailTabbarView extends StatelessWidget {
             ),
           ),
           Center(
+            child: Text('상품'),
+          ),
+          Center(
             child: Text('예약'),
           ),
           Center(
             child: Text('리뷰'),
           ),
           Center(
-            child: Text('지도'),
+            //Navermap
           ),
         ],
       ),
