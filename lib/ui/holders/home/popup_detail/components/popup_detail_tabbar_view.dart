@@ -17,6 +17,20 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
   NLatLng? _userLocation;
 
 
+  void _onMapReady(NaverMapController controller) async {
+
+    // 위치 오버레이 객체 가져오기
+    final marker = NMarker(id: "popup", position: NLatLng(35.115834043943664, 128.96686365459226));
+    final locationOverlay = await controller.getLocationOverlay();
+
+    locationOverlay.setIcon(const NOverlayImage.fromAssetImage('lib/ui/asset/icon/img.png'));
+    locationOverlay.setIconSize(Size(28.35,28.35));
+    controller.setLocationTrackingMode(NLocationTrackingMode.noFollow);
+
+    controller.addOverlayAll({marker});
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -42,8 +56,10 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
 
 
 
+
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, right: 25, left: 25),
       child: TabBarView(
@@ -173,6 +189,8 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
             child: _userLocation == null
                 ? CircularProgressIndicator()
                 : NaverMap(
+              onMapReady: _onMapReady
+              ,
               options:NaverMapViewOptions(
               initialCameraPosition: NCameraPosition(
                 target: _userLocation!,
