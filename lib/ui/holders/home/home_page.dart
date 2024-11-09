@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
 
   // 위치 정보를 서버로 전송하는 메서드
   Future<void> _sendLocationToServer(Position position) async {
-    final url = Uri.parse("http://your-server-url/api/location/coordinates");
+    final url = Uri.parse("http://116.124.191.174:15028/api/location/coordinates");
 
     try {
       final response = await http.post(
@@ -63,6 +63,13 @@ class _HomePageState extends State<HomePage> {
     } catch (e) {
       print("위치 전송 중 오류 발생: $e");
     }
+  }
+
+  void startSendingLocationUpdates() {
+    Geolocator.getPositionStream(locationSettings: LocationSettings(accuracy: LocationAccuracy.high))
+        .listen((Position position) {
+      _sendLocationToServer(position);
+    });
   }
 
   @override

@@ -1,9 +1,46 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:geolocator/geolocator.dart';
 
-class PopupDetailTabbarView extends StatelessWidget {
-  const PopupDetailTabbarView({
-    super.key,
-  });
+
+class PopupDetailTabbarView extends StatefulWidget {
+  const PopupDetailTabbarView({Key? key}) : super(key: key);
+
+
+  @override
+  _PopupDetailTabbarViewState createState() => _PopupDetailTabbarViewState();
+}
+
+class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
+  NLatLng? _userLocation;
+
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeMap();
+  }
+
+  Future<NLatLng> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    return NLatLng(position.latitude, position.longitude);
+  }
+
+
+
+
+
+  Future<void> _initializeMap() async {
+    _userLocation = await getCurrentLocation();
+    setState(() {});
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +57,8 @@ class PopupDetailTabbarView extends StatelessWidget {
                     Text(
                         '팝업스토어 명',
                         style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold
                         )
                     ),
                     SizedBox(width: 15,),
@@ -41,11 +78,11 @@ class PopupDetailTabbarView extends StatelessWidget {
                         Text(
                           "기간 : ",
                           style: TextStyle(
-                            fontSize: 10
+                              fontSize: 10
                           ),
                         ),
                         Text(
-                            "시간 : ",
+                          "시간 : ",
                           style: TextStyle(
                               fontSize: 10
                           ),
@@ -133,7 +170,16 @@ class PopupDetailTabbarView extends StatelessWidget {
             child: Text('리뷰'),
           ),
           Center(
-            //Navermap
+            child: _userLocation == null
+                ? CircularProgressIndicator()
+                : NaverMap(
+              options:NaverMapViewOptions(
+              initialCameraPosition: NCameraPosition(
+                target: _userLocation!,
+                zoom: 15,
+              )
+              ),
+            ),
           ),
         ],
       ),
