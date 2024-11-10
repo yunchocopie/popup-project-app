@@ -7,6 +7,7 @@ import 'package:table_calendar/table_calendar.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation_header.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/review_section.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/product_section.dart';
 
 class PopupDetailTabbarView extends StatefulWidget {
   const PopupDetailTabbarView({Key? key}) : super(key: key);
@@ -171,7 +172,7 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
             ),
           ),
           Center(
-            child: Text('상품'),
+            child: ProductSection(),
           ),
           SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
