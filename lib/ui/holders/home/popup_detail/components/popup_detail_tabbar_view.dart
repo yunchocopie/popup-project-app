@@ -6,6 +6,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation_header.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/review_section.dart';
 
 class PopupDetailTabbarView extends StatefulWidget {
   const PopupDetailTabbarView({Key? key}) : super(key: key);
@@ -174,12 +175,12 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
           ),
           SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
-            child: Text('리뷰'),
+            child: ReviewSection(),
           ),
           Center(
             child: SizedBox(
-            width: 300, // 원하는 너비
-            height: 400, // 원하는 높이
+            width: 300,
+            height: 400,
               child: _userLocation == null
                   ? CircularProgressIndicator()
                   : NaverMap(
