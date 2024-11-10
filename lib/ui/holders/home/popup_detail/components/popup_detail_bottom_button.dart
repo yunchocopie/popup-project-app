@@ -7,41 +7,31 @@ class PopupDetailBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: double.infinity,
-          height: 80,
-          child: ElevatedButton(
-            onPressed: () {
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => AllMenuPage(),
-              //   ),
-              // );
-            },
-            style: ButtonStyle(
-              backgroundColor: MaterialStateProperty.all<Color>(
-                  Color(0xFFFF7414)), // Adjust button color
-              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                RoundedRectangleBorder(
-                  borderRadius:
-                  BorderRadius.circular(5.0), // Adjust button corners
-                ),
-              ),
-            ),
-            child: Text(
-              '주문하기',
-              style: TextStyle(fontSize: 25, color: Colors.white),
-            ),
-          ),
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.blue, // 버튼의 배경색
+        shape: RoundedRectangleBorder(
+          // 버튼의 모양을 변경하기 위해 사용
+          borderRadius: BorderRadius.circular(5), // 원하는 모양으로 변경 가능
         ),
+        fixedSize:
+        Size(MediaQuery.of(context).size.width * 1, 40), // 버튼의 너비와 높이 설정
       ),
+      child: Text(
+        "예약하기",
+        style: TextStyle(
+            color: Colors.white, // 버튼 텍스트 색상
+            fontSize: 18, // 버튼 텍스트 크기
+            fontWeight: FontWeight.bold),
+      ),
+      onPressed: () {
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (context) => ReviewPage(),
+        //   ),
+        // );
+      },
     );
   }
 }

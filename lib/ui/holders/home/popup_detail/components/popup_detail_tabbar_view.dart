@@ -3,7 +3,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:flutter_naver_map/flutter_naver_map.dart';
 import 'package:geolocator/geolocator.dart';
-
+import 'package:table_calendar/table_calendar.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation_header.dart';
 
 class PopupDetailTabbarView extends StatefulWidget {
   const PopupDetailTabbarView({Key? key}) : super(key: key);
@@ -179,25 +181,27 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
           Center(
             child: Text('상품'),
           ),
-          Center(
-            child: Text('예약'),
-          ),
+          SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
             child: Text('리뷰'),
           ),
           Center(
-            child: _userLocation == null
-                ? CircularProgressIndicator()
-                : NaverMap(
-              onMapReady: _onMapReady
-              ,
-              options:NaverMapViewOptions(
-              initialCameraPosition: NCameraPosition(
-                target: _userLocation!,
-                zoom: 15,
-              )
+            child: SizedBox(
+            width: 300, // 원하는 너비
+            height: 400, // 원하는 높이
+              child: _userLocation == null
+                  ? CircularProgressIndicator()
+                  : NaverMap(
+                onMapReady: _onMapReady
+                ,
+                options:NaverMapViewOptions(
+                initialCameraPosition: NCameraPosition(
+                  target: _userLocation!,
+                  zoom: 15,
+                )
               ),
             ),
+          ),
           ),
         ],
       ),
