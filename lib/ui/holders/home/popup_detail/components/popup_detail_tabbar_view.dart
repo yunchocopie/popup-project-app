@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation.dart';
+import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation_header.dart';
 
 class PopupDetailTabbarView extends StatelessWidget {
   const PopupDetailTabbarView({
@@ -18,13 +21,11 @@ class PopupDetailTabbarView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                        '팝업스토어 명',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold
-                        )
+                      '팝업스토어 명',
+                      style: TextStyle(
+                          fontSize: 20, fontWeight: FontWeight.bold),
                     ),
-                    SizedBox(width: 15,),
+                    SizedBox(width: 15),
                     Container(
                       width: 45,
                       height: 18,
@@ -33,22 +34,21 @@ class PopupDetailTabbarView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                         color: Colors.blue,
                       ),
-                      child: Text('상태', style: TextStyle(fontSize: 12, color: Colors.white)),
+                      child: Text(
+                        '상태',
+                        style: TextStyle(fontSize: 12, color: Colors.white),
+                      ),
                     ),
-                    SizedBox(width: 15,),
+                    SizedBox(width: 15),
                     Column(
                       children: [
                         Text(
                           "기간 : ",
-                          style: TextStyle(
-                            fontSize: 10
-                          ),
+                          style: TextStyle(fontSize: 10),
                         ),
                         Text(
-                            "시간 : ",
-                          style: TextStyle(
-                              fontSize: 10
-                          ),
+                          "시간 : ",
+                          style: TextStyle(fontSize: 10),
                         ),
                       ],
                     )
@@ -113,19 +113,10 @@ class PopupDetailTabbarView extends StatelessWidget {
                   height: 1,
                   color: Colors.blue,
                 ),
-                Row(
-                  children: [
-                    Spacer(),
-                    Spacer(),
-                  ],
-                ),
-                // TODO: 지도 적용해야함
               ],
             ),
           ),
-          Center(
-            child: Text('예약'),
-          ),
+          SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
             child: Text('리뷰'),
           ),
