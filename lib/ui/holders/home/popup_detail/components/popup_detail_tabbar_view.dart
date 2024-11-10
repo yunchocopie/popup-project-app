@@ -1,15 +1,67 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter_naver_map/flutter_naver_map.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation.dart';
 import 'package:team_project/ui/holders/home/popup_detail/components/popup_detail_tabbar_reservation_header.dart';
 
-class PopupDetailTabbarView extends StatelessWidget {
-  const PopupDetailTabbarView({
-    super.key,
-  });
+class PopupDetailTabbarView extends StatefulWidget {
+  const PopupDetailTabbarView({Key? key}) : super(key: key);
+
+
+  @override
+  _PopupDetailTabbarViewState createState() => _PopupDetailTabbarViewState();
+}
+
+class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
+  NLatLng? _userLocation;
+
+
+  void _onMapReady(NaverMapController controller) async {
+
+    // 위치 오버레이 객체 가져오기
+    final marker = NMarker(id: "popup", position: NLatLng(35.115834043943664, 128.96686365459226));
+    final locationOverlay = await controller.getLocationOverlay();
+
+    locationOverlay.setIcon(const NOverlayImage.fromAssetImage('lib/ui/asset/icon/img.png'));
+    locationOverlay.setIconSize(Size(28.35,28.35));
+    controller.setLocationTrackingMode(NLocationTrackingMode.noFollow);
+
+    controller.addOverlayAll({marker});
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeMap();
+  }
+
+  Future<NLatLng> getCurrentLocation() async {
+    Position position = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.high,
+    );
+    return NLatLng(position.latitude, position.longitude);
+  }
+
+
+
+
+
+  Future<void> _initializeMap() async {
+    _userLocation = await getCurrentLocation();
+    setState(() {});
+  }
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.only(top: 16.0, right: 25, left: 25),
       child: TabBarView(
@@ -24,6 +76,7 @@ class PopupDetailTabbarView extends StatelessWidget {
                       '팝업스토어 명',
                       style: TextStyle(
                           fontSize: 20, fontWeight: FontWeight.bold),
+
                     ),
                     SizedBox(width: 15),
                     Container(
@@ -116,12 +169,30 @@ class PopupDetailTabbarView extends StatelessWidget {
               ],
             ),
           ),
+          Center(
+            child: Text('상품'),
+          ),
           SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
             child: Text('리뷰'),
           ),
           Center(
-            child: Text('지도'),
+            child: SizedBox(
+            width: 300, // 원하는 너비
+            height: 400, // 원하는 높이
+              child: _userLocation == null
+                  ? CircularProgressIndicator()
+                  : NaverMap(
+                onMapReady: _onMapReady
+                ,
+                options:NaverMapViewOptions(
+                initialCameraPosition: NCameraPosition(
+                  target: _userLocation!,
+                  zoom: 15,
+                )
+              ),
+            ),
+          ),
           ),
         ],
       ),

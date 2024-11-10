@@ -42,6 +42,18 @@ class PopupDetailTabbar extends StatelessWidget {
               alignment: Alignment.center,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(15),
+                color: Colors.blue.withOpacity(0.2), // 선택되지 않은 탭 배경
+              ),
+              child: Text('상품', style: TextStyle(fontSize: 12)),
+            ),
+          ),
+          Tab(
+            child: Container(
+              width: 55,
+              height: 24,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
                 color: Colors.blue.withOpacity(0.2),
               ),
               child: Text('예약', style: TextStyle(fontSize: 12)),
