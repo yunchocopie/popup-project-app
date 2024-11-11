@@ -171,16 +171,15 @@ class _PopupDetailTabbarViewState extends State<PopupDetailTabbarView> {
               ],
             ),
           ),
-          Center(
-            child: ProductSection(),
-          ),
+          ProductSection(),
           SingleChildScrollView(child: TransactionCalenderPage()),
           Center(
             child: ReviewSection(),
           ),
-          Center(
+          Align(
+            alignment: Alignment.topCenter,
             child: SizedBox(
-            width: 300,
+            width: 400,
             height: 400,
               child: _userLocation == null
                   ? CircularProgressIndicator()

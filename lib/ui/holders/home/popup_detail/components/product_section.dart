@@ -4,7 +4,7 @@ class ProductSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.all(0.0),
       children: [
         _buildProductTile(
           "https://via.placeholder.com/150",
@@ -29,11 +29,14 @@ class ProductSection extends StatelessWidget {
 
   Widget _buildProductTile(String imageUrl, String productName, int price) {
     return ListTile(
-      leading: Image.network(
-        imageUrl,
-        width: 60,
-        height: 60,
-        fit: BoxFit.cover,
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(5), // 둥근 이미지 설정
+        child: Image.network(
+          imageUrl,
+          width: 60,
+          height: 60,
+          fit: BoxFit.cover,
+        ),
       ),
       title: Text(productName, style: TextStyle(fontWeight: FontWeight.bold)),
       subtitle: Text("₩$price", style: TextStyle(color: Colors.grey[600])),
