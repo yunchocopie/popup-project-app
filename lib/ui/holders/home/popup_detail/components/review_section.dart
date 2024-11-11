@@ -16,7 +16,7 @@ class _ReviewSectionState extends State<ReviewSection> {
       children: [
         Expanded(
           child: ListView(
-            padding: EdgeInsets.all(16.0),
+            padding: EdgeInsets.all(0.0),
             children: [
               _buildReviewTile("정말 멋진 팝업 스토어예요!", "2024-11-08", 5),
               Divider(),
@@ -27,7 +27,7 @@ class _ReviewSectionState extends State<ReviewSection> {
           ),
         ),
         Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: EdgeInsets.only(bottom: 20.0),
           child: Column(
             children: [
               Row(
@@ -54,20 +54,38 @@ class _ReviewSectionState extends State<ReviewSection> {
               Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      controller: _reviewController,
-                      decoration: InputDecoration(
-                        hintText: '리뷰를 입력하세요',
-                        border: OutlineInputBorder(),
+                    child: SizedBox(
+                      width: 300, // 원하는 너비
+                      height: 44, // 원하는 높이
+                      child: TextField(
+                        controller: _reviewController,
+                        maxLines: 1, // 한 줄로 제한
+                        decoration: InputDecoration(
+                          hintText: '리뷰를 입력하세요',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.symmetric(vertical: 10, horizontal: 12), // 텍스트 패딩 추가
+                        ),
                       ),
                     ),
+
+
                   ),
                   SizedBox(width: 8.0),
                   ElevatedButton(
                     onPressed: () {
                       _submitReview(context);
                     },
-                    child: Text('제출'),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue, // 버튼 색상 변경
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(5), // 사각형 모양
+                      ),
+                      padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12), // 버튼 크기 조정
+                    ),
+                    child: Text(
+                      '제출',
+                      style: TextStyle(color: Colors.white), // 텍스트 색상 변경
+                    ),
                   ),
                 ],
               ),
@@ -80,11 +98,21 @@ class _ReviewSectionState extends State<ReviewSection> {
 
   Widget _buildReviewTile(String reviewText, String date, int rating) {
     return ListTile(
-      title: Text(reviewText),
+      title: Text(
+          reviewText,
+        style: TextStyle(
+          fontWeight: FontWeight.bold
+        ),
+      ),
       subtitle: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(date),
+          Text(
+              date,
+            style: TextStyle(
+              color: Colors.grey
+            ),
+          ),
           Row(
             children: List.generate(5, (index) {
               return Icon(
