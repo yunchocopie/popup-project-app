@@ -10,6 +10,19 @@ class PopupDetailReservationPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: PopupDetailReservation(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        scrolledUnderElevation: 0,
+        title: Text(
+          '예약 확인 페이지',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+          ),
+        ),
+        centerTitle: true,
+        elevation: 0,
+      ),
     );
   }
 }
